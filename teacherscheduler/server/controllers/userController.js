@@ -14,6 +14,7 @@ exports.show = function show(request, response) {
 }
 
 exports.create = function create(request, response) {
+    console.log(request.body)
     const newuser = new userModel({
         id: request.body.id,
         firstName: request.body.firstName,
@@ -28,4 +29,5 @@ exports.create = function create(request, response) {
     newuser.save().then(saveduser => {
         console.log(saveduser)
     })
+    response.send(200)
 }
