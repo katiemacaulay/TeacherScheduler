@@ -9,33 +9,40 @@ class Calendar extends React.Component{
         this.state = {
           selectedDay: undefined,
           schoolDays: [
-              [2017, 3, 12], 
-              [2017, 3, 2], 
-              [2017, 3, 5]
+              [4, 2, 2017], 
+              [4, 5, 2017]
           ]
         };
       }
+      
       handleDayClick(day) {
           let dataSplit = day.toLocaleDateString().split('/')
-          dataSplit.splice(0, 0, dataSplit[2]);
-          dataSplit.pop()
           let newSelectedDate = dataSplit.map(Number)
-          console.log(dataSplit)
+          let allSchoolDays = this.state.schoolDays.slice()
+          let indexOfSelectedDay = this.state.schoolDays.indexOf(newSelectedDate)
+          if(indexOfSelectedDay < 0){
+            allSchoolDays.push(newSelectedDate)
+          }
+          console.log(indexOfSelectedDay)
           console.log(newSelectedDate)
+          console.log(allSchoolDays)
 
-            this.setState({ selectedDay: day.toDateString()});
+            this.setState({ selectedDay: day.toDateString(), 
+            schoolDays: allSchoolDays
+            });
       }
+      
 
   render(){
     return (
         <div>
           <DayPicker 
           initialMonth={new Date(2017, 3)}
-          selectedDays={[
-
-              new Date(2017, 3, 12),
-              new Date(2017, 3, 2),
-          ]}
+          selectedDays={
+            this.state.schoolDays.map(day => {
+            return (new Date(day[2], (day[0]-1), day[1]))
+          })
+          }
           onDayClick={this.handleDayClick} />
         {this.state.selectedDay ? (
           <p>You clicked {this.state.selectedDay}</p>
