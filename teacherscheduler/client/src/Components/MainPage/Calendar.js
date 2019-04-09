@@ -16,8 +16,7 @@ class Calendar extends React.Component{
         };
       }
       handleDayClick(day) {
-          let selectedDate = day.toLocaleDateString()
-          let dataSplit = selectedDate.split('/')
+          let dataSplit = day.toLocaleDateString().split('/')
           dataSplit.splice(0, 0, dataSplit[2]);
           dataSplit.pop()
           let newSelectedDate = dataSplit.map(Number)
