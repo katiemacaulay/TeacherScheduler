@@ -1,4 +1,4 @@
-# TeacherScheduler
+# Teacher Scheduler
 
 On a weekly basis, special area teachers teach anywhere from 15-30 different classes a week. Teacher Scheduler helps keep track of what lesson and classes you have everyday, so teachers are not wasting their precious planning time! Teachers can then recieve information on what class and lesson that class is on every day, week, or school year!
 
@@ -8,7 +8,7 @@ Teacher Scheduler allows you to edit a starter school year schedule to match you
 
 ## Manage the Schedule
 
-Throughout the school year, students might miss classes for field trips, testing, and assemblies as well as teachers might miss days for professional developments or being sick. Teacher Scheudler is easy to edit, allowing teachers to adjust their schedule to match the lesson students should be on.
+Throughout the school year, students might miss classes for field trips, testing, and assemblies as well as teachers might miss days for professional developments or being sick. Teacher Scheduler is easy to edit, allowing teachers to adjust their schedule to match the lesson students should be on.
 
 ### Highlights
 
