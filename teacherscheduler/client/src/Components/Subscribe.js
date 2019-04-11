@@ -38,6 +38,7 @@ class SubscribeForm extends React.Component{
       },
       body: JSON.stringify(data)
     });
+    alert('you made an user!')
   }
   render(){
     return (

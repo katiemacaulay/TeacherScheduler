@@ -11,24 +11,35 @@ class Calendar extends React.Component{
           schoolDays: [
               [4, 2, 2017], 
               [4, 5, 2017]
+          ],
+          schoolDaySearch: [
+            "4/2/2017",
+            "4/5/2017"
           ]
         };
       }
       
       handleDayClick(day) {
-          let dataSplit = day.toLocaleDateString().split('/')
+        // handles the input for New Date
+          let data = day.toLocaleDateString()
+          let dataSplit = data.split('/')
           let newSelectedDate = dataSplit.map(Number)
           let allSchoolDays = this.state.schoolDays.slice()
-          let indexOfSelectedDay = this.state.schoolDays.indexOf(newSelectedDate)
-          if(indexOfSelectedDay < 0){
+        // handles the string input array
+          let schoolDaysSearch = this.state.schoolDaySearch.slice()
+          let schoolDayIndex = schoolDaysSearch.indexOf(data)
+
+          if(schoolDayIndex > -1){
+            schoolDaysSearch.splice(schoolDayIndex, 1)
+            allSchoolDays.splice(schoolDayIndex, 1)
+          } else {
+            schoolDaysSearch.push(data)
             allSchoolDays.push(newSelectedDate)
           }
-          console.log(indexOfSelectedDay)
-          console.log(newSelectedDate)
-          console.log(allSchoolDays)
 
             this.setState({ selectedDay: day.toDateString(), 
-            schoolDays: allSchoolDays
+            schoolDays: allSchoolDays,
+            schoolDaySearch: schoolDaysSearch
             });
       }
       
