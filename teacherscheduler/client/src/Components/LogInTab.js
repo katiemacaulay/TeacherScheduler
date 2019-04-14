@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import SignUp from "./SignUp/SignUpSlider";
-import LogIn from "./LogIn"
+import LogIn from "./SignUp/SignIn"
 
 
 function TabContainer(props) {

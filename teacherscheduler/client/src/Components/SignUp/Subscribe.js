@@ -47,6 +47,7 @@ class SubscribeForm extends React.Component{
             name="firstName"
             onChange={e => {
               this.setState({[e.target.name]: e.target.value});
+              localStorage.setItem([e.target.name], e.target.value);
             }}
             placeholder="Enter First Name"
             value={this.state.firstName}
@@ -57,6 +58,7 @@ class SubscribeForm extends React.Component{
             name="lastName"
             onChange={e => {
               this.setState({[e.target.name]: e.target.value});
+              localStorage.setItem([e.target.name], e.target.value)
             }}
             placeholder="Enter Last Name"
             value={this.state.lastName}
@@ -67,6 +69,7 @@ class SubscribeForm extends React.Component{
             name="email"
             onChange={e => {
               this.setState({[e.target.name]: e.target.value});
+              localStorage.setItem([e.target.name], e.target.value)
             }}
             placeholder="Enter Email Address"
             value={this.state.email}

@@ -28,10 +28,11 @@ class SignUp extends Component {
         <FormGroup>
           <FormLabel>Username</FormLabel>
           <FormControl
-            type="email"
+            type="username"
             name="username"
             onChange={e => {
               this.setState({[e.target.name]: e.target.value});
+              localStorage.setItem([e.target.name], e.target.value)
             }}
             placeholder="Enter Username"
             value={this.state.username}
@@ -45,6 +46,7 @@ class SignUp extends Component {
             name="password"
             onChange={e => {
               this.setState({[e.target.name]: e.target.value});
+              localStorage.setItem([e.target.name], e.target.value)
             }}
             placeholder="Enter Password"
             value={this.state.password}

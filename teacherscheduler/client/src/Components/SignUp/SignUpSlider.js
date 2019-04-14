@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 
 import SignUp from "./SignUp";
 import Subscribe from "./Subscribe";
+import Confirm from "./ConfirmPage"
 
 
 const styles = theme => ({
@@ -38,7 +39,7 @@ function getStepContent(step) {
     case 1:
       return <SignUp/>;
     case 2:
-      return "Confirmation"
+      return <Confirm/>
     default:
       return 'Unknown step';
   }
