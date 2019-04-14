@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { FormGroup, ControlLabel, FormControl, Button } from "react-bootstrap";
+import { FormGroup, FormLabel, FormControl, Button } from "react-bootstrap";
 
 class SignUp extends Component {
   constructor() {
@@ -26,7 +26,7 @@ class SignUp extends Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
         <FormGroup>
-          <ControlLabel>Username</ControlLabel>
+          <FormLabel>Username</FormLabel>
           <FormControl
             type="email"
             name="username"
@@ -39,7 +39,7 @@ class SignUp extends Component {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Password</ControlLabel>
+          <FormLabel>Password</FormLabel>
           <FormControl
             type="password"
             name="password"
@@ -52,7 +52,7 @@ class SignUp extends Component {
         </FormGroup>
 
         <FormGroup>
-          <ControlLabel>Confirm Password</ControlLabel>
+          <FormLabel>Confirm Password</FormLabel>
           <FormControl
             type="password"
             name="confirmPassword"
