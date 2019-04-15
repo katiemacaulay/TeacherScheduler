@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+
 
 const styles = theme => ({
   main: {
@@ -42,109 +43,78 @@ const styles = theme => ({
   },
 });
 
-function SignIn(props) {
-  const { classes } = props;
 
-  return (
-    <main className={classes.main}>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
-          </FormControl>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign in
-          </Button>
-        </form>
-      </Paper>
-    </main>
-  );
+
+class SignIn extends Component {
+  constructor(props) {
+    super();
+    this.classes = props.classes;
+    this.state = {
+      username: "",
+      password: "",
+    };
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.onSignIn({
+      username: this.state.username,
+      password: this.state.password,
+    });
+  }
+
+  render() {
+    return (
+        <main className={this.classes.main}>
+          <CssBaseline />
+          <Paper className={this.classes.paper}>
+            <Avatar className={this.classes.avatar}>
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <form className={this.classes.form} onSubmit={this.handleSubmit.bind(this)}>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="username">User name</InputLabel>
+                <Input id="username" 
+                    name="username" 
+                    autoComplete="username" 
+                    autoFocus
+                    value={this.state.username}
+                    onChange={e => {
+                      this.setState({[e.target.name]: e.target.value});
+                    }}
+                />
+              </FormControl>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="password">Password</InputLabel>
+                <Input name="password" 
+                  type="password" 
+                  id="password" 
+                  autoComplete="current-password" 
+                  onChange={e => {
+                    this.setState({[e.target.name]: e.target.value});
+                  }}
+                  value={this.state.password}
+                />
+              </FormControl>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={this.classes.submit}
+              >
+                Sign in
+              </Button>
+            </form>
+          </Paper>
+        </main>
+    );
+  }
 }
 
 SignIn.propTypes = {
-  classes: PropTypes.object.isRequired,
+  onSignIn: PropTypes.func.isRequired
 };
-
 export default withStyles(styles)(SignIn);
-
-// import React, { Component } from "react";
-// import PropTypes from "prop-types";
-// import { FormGroup, FormLabel, FormControl, Button } from "react-bootstrap";
-
-// class SignIn extends Component {
-//   constructor() {
-//     super();
-
-//     this.state = {
-//       username: "",
-//       password: ""
-//     };
-//   }
-
-//   handleSubmit(event) {
-//     event.preventDefault();
-//     this.props.onSignIn({
-//       username: this.state.username,
-//       password: this.state.password,
-//     });
-//   }
-
-//   render() {
-//     return (
-//       <form onSubmit={this.handleSubmit.bind(this)}>
-//         <FormGroup>
-//           <FormLabel>Username</FormLabel>
-//           <FormControl
-//             type="email"
-//             name="username"
-//             onChange={e => {
-//               this.setState({[e.target.name]: e.target.value});
-//             }}
-//             placeholder="Enter Username"
-//             value={this.state.username}
-//           />
-//         </FormGroup>
-
-//         <FormGroup>
-//           <FormLabel>Password</FormLabel>
-//           <FormControl
-//             type="password"
-//             name="password"
-//             onChange={e => {
-//               this.setState({[e.target.name]: e.target.value});
-//             }}
-//             placeholder="Enter Password"
-//             value={this.state.password}
-//           />
-//         </FormGroup>
-
-//         <Button type="submit">
-//          Sign In
-//        </Button>
-//       </form>
-//     );
-//   }
-// }
-
-// SignIn.propTypes = {
-//   onSignIn: PropTypes.func.isRequired
-// };
-
-// export default SignIn;
