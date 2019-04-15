@@ -31,3 +31,19 @@ exports.create = function create(request, response) {
     })
     response.send(200)
 }
+
+
+exports.login = function login(request, response) {
+    console.log(request.body)
+    let model = userModel.findOne({
+        username: request.body.username, 
+        password: request.body.password
+    }, function(err, doc){
+        if(err || !doc){
+            response.send(403)
+            return
+        }
+        response.json({ 'token': doc._id });
+    })
+    
+}

@@ -49,7 +49,7 @@ class SignUpSlider extends React.Component {
   state = {
     activeStep: 0,
     completed: {},
-    warning: true
+    warning: true,
   };
 
   totalSteps = () => getSteps().length;
@@ -108,6 +108,22 @@ class SignUpSlider extends React.Component {
 
   allStepsCompleted() {
     return this.completedSteps() === this.totalSteps();
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let data = 
+    
+    console.log(data)
+
+    fetch('/user', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json" 
+      },
+      body: JSON.stringify(data)
+    });
+    alert('you made an user!')
   }
 
   render() {

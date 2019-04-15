@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
 import SignIn from "./SignUp/SignIn";
-import TopNavbar from "./SignUp/TopNavBar";
-import Secret from "./SignUp/Secret";
+
 
 class Login extends Component {
 
@@ -18,7 +16,7 @@ class Login extends Component {
         SignInError: "Must Provide All Fields"
       });
     } else {
-      fetch("/api/users", {
+      fetch("/login", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(credentials)
