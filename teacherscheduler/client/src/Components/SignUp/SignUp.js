@@ -1,11 +1,32 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { FormGroup, FormLabel, FormControl, Button } from "react-bootstrap";
+import withStyles from '@material-ui/core/styles/withStyles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+const styles = theme => ({
+  main: {
+    width: 'auto',
+    display: 'block',
+    marginLeft: 40
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing.unit,
+  },
+  boxes:{
+    margin: 20,
+    fontSize: 17
+  },
+  boxSize:{
+    fontSize: 17
+  }
+});
 
 class SignUp extends Component {
-  constructor() {
+  constructor(props) {
     super();
-
+    this.classes = props.classes;
     this.state = {
       username: "",
       password: "",
@@ -24,58 +45,57 @@ class SignUp extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <FormGroup>
-          <FormLabel>Username</FormLabel>
+      <main className={this.classes.main}>
+      <CssBaseline>
+      <form className={this.classes.form} onSubmit={this.handleSubmit.bind(this)}>
+        <FormGroup className={this.classes.boxes}>
+          <FormLabel>Username  </FormLabel>
           <FormControl
+            className={this.classes.boxSize}
             type="username"
             name="username"
             onChange={e => {
               this.setState({[e.target.name]: e.target.value});
               localStorage.setItem([e.target.name], e.target.value)
             }}
-            placeholder="Enter Username"
+            placeholder=" Enter Username"
             value={this.state.username}
           />
         </FormGroup>
 
-        <FormGroup>
-          <FormLabel>Password</FormLabel>
+        <FormGroup className={this.classes.boxes}>
+          <FormLabel>Password  </FormLabel>
           <FormControl
+            className={this.classes.boxSize}
             type="password"
             name="password"
             onChange={e => {
               this.setState({[e.target.name]: e.target.value});
               localStorage.setItem([e.target.name], e.target.value)
             }}
-            placeholder="Enter Password"
+            placeholder=" Enter Password"
             value={this.state.password}
           />
         </FormGroup>
 
-        <FormGroup>
-          <FormLabel>Confirm Password</FormLabel>
+        <FormGroup className={this.classes.boxes}>
+          <FormLabel>Confirm Password  </FormLabel>
           <FormControl
+            className={this.classes.boxSize}          
             type="password"
             name="confirmPassword"
             onChange={e => {
               this.setState({[e.target.name]: e.target.value});
             }}
-            placeholder="Confirm Password"
+            placeholder=" Confirm Password"
             value={this.state.confirmPassword}
           />
         </FormGroup>
-
-        <Button type="submit">
-         Sign Up
-       </Button>
       </form>
+      </CssBaseline>
+      </main>
     );
   }
 }
 
-SignUp.propTypes = {
-  onSignUp: PropTypes.func.isRequired
-};
-
-export default SignUp;
+export default withStyles(styles)(SignUp);

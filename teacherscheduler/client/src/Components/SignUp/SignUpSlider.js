@@ -18,6 +18,7 @@ const styles = theme => ({
   },
   button: {
     marginRight: theme.spacing.unit,
+    margin: 10
   },
   completed: {
     display: 'inline-block',
@@ -112,8 +113,13 @@ class SignUpSlider extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let data = 
-    
+    let data = {
+      'firstName': localStorage.getItem('firstName'),
+      'lastName': localStorage.getItem('lastName'),
+      'email': localStorage.getItem('email'),
+      'username': localStorage.getItem('username'),
+      'password': localStorage.getItem('password')
+    }
     console.log(data)
 
     fetch('/user', {

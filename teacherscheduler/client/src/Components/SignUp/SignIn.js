@@ -68,14 +68,12 @@ class SignIn extends Component {
         <main className={this.classes.main}>
           <CssBaseline />
           <Paper className={this.classes.paper}>
-            <Avatar className={this.classes.avatar}>
-            </Avatar>
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
             <form className={this.classes.form} onSubmit={this.handleSubmit.bind(this)}>
               <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="username">User name</InputLabel>
+                <InputLabel htmlFor="username">Username</InputLabel>
                 <Input id="username" 
                     name="username" 
                     autoComplete="username" 
