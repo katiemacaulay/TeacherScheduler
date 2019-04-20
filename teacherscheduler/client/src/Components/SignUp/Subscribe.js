@@ -52,20 +52,6 @@ class SubscribeForm extends React.Component{
     });
   }
 
-
-  handleSubmit(e) {
-    e.preventDefault();
-    let data = this.state
-
-    fetch('/user', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json" 
-      },
-      body: JSON.stringify(data)
-    });
-    alert('you made an user!')
-  }
   render(){
     return (
       <main className={this.classes.main}>
