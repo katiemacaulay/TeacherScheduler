@@ -20,15 +20,12 @@ class Login extends Component {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(credentials)
-      }).then((res) => {
-        return res.json();
       }).then((data) => {
-        const { token } = data;
-        localStorage.setItem("token", token);
         this.setState({
           SignInError: "",
-          authenticated: token
+          authenticated: true
         });
+        // this.props.history.push('/dashboard')        
       }).catch(error => {
         console.log(error)
       })
@@ -44,7 +41,9 @@ class Login extends Component {
 
 
   render() {
-       
+    fetch('/users', {method: 'GET', headers: {"Content-Type": "application/json"}}).then((resp) => {
+      console.log(resp.data)
+    })
     return (
       <SignIn 
         error={this.state.SignInError} 

@@ -1,4 +1,4 @@
-const userModel = require("../Models/userModel")
+const userModel = require("../models/userModel")
 
 
 exports.list = function list(request, response) {
@@ -21,10 +21,7 @@ exports.create = function create(request, response) {
         lastName: request.body.lastName,
         email: request.body.email,
         username: request.body.username,
-        password: request.body.password,
-        state: request.body.state,
-        schoolType: request.body.schoolType,
-        schoolSchedule: request.body.schoolSchedule
+        password: request.body.password
     })
     newuser.save().then(saveduser => {
         console.log(saveduser)
@@ -34,7 +31,6 @@ exports.create = function create(request, response) {
 
 
 exports.login = function login(request, response) {
-    console.log(request.body)
     let model = userModel.findOne({
         username: request.body.username, 
         password: request.body.password
@@ -43,7 +39,13 @@ exports.login = function login(request, response) {
             response.send(403)
             return
         }
-        response.json({ 'token': doc._id });
+        response.cookie('userid', doc._id, { 
+            maxAge: 1000 * 60 * 60, 
+            httpOnly: true 
+        });
+        response.sendStatus(200)
+
     })
     
 }
+
