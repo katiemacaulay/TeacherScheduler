@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, FormLabel, FormControl, Button } from "react-bootstrap";
+import { FormGroup, FormLabel, FormControl } from "react-bootstrap";
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -50,6 +50,20 @@ class SubscribeForm extends React.Component{
     this.setState({
       [name]: value
     });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let data = this.state
+
+    fetch('/user', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json" 
+      },
+      body: JSON.stringify(data)
+    });
+    alert('you made an user!')
   }
 
   render(){

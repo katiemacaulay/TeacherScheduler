@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SignIn from "./SignUp/SignIn";
-import { Redirect } from 'react-router-dom'
+import Calendar from "./MainPage/Calendar";
 
 class Login extends Component {
 
@@ -24,10 +24,9 @@ class Login extends Component {
         this.setState({
           SignInError: "",
           authenticated: true
-        }).then(()=>{
-          return <Redirect to='/schedule'/>
         })
-        // this.props.history.push('/dashboard')        
+        localStorage.setItem('authenticated', true);
+        this.forceUpdate();
       }).catch(error => {
         console.log(error)
       })
@@ -43,7 +42,7 @@ class Login extends Component {
 
 
   render() {
-    return (
+    return(
       <SignIn 
         error={this.state.SignInError} 
         onSignIn={this.handleSignIn} 

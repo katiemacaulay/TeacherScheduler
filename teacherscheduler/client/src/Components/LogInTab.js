@@ -5,7 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
-
+import Schedule from "./MainPage/Schedule";
 import SignUp from "./SignUp/SignUpSlider";
 import LogIn from "./LogIn"
 
@@ -41,8 +41,10 @@ function TabContainer(props) {
     render() {
       const { classes } = this.props;
       const { value } = this.state;
-  
-      return (
+      if(localStorage.getItem('authenticated') === 'true'){
+        return <Schedule/>
+      } else {
+        return (
         <div className={classes.root}>
           <AppBar position="static">
           <Tabs value={value} onChange={this.handleChange}>
@@ -54,6 +56,7 @@ function TabContainer(props) {
           {value === 1 && <TabContainer><SignUp/></TabContainer>}
         </div>
       );
+      }
     }
   }
   

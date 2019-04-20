@@ -37,7 +37,7 @@ function AppRouter() {
         </nav>
 
         <Route path="/" exact component={LogInTab} />
-        <Route path="/schedule/" component={Calendar} />
+        <Route path="/schedule" component={Calendar} />
         {/* <Route path="/users/" component={Users} /> */}
       </div>
     </Router>
