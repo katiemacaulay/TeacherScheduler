@@ -47,7 +47,7 @@ class Calendar extends React.Component{
     return (
         <div>
           <DayPicker 
-          initialMonth={new Date(2017, 3)}
+          initialMonth={new Date(2019, 7)}
           selectedDays={
             this.state.schoolDays.map(day => {
             return (new Date(day[2], (day[0]-1), day[1]))

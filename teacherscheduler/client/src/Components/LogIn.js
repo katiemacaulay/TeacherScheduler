@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SignIn from "./SignUp/SignIn";
-
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
 
@@ -24,7 +24,9 @@ class Login extends Component {
         this.setState({
           SignInError: "",
           authenticated: true
-        });
+        }).then(()=>{
+          return <Redirect to='/schedule'/>
+        })
         // this.props.history.push('/dashboard')        
       }).catch(error => {
         console.log(error)
@@ -41,9 +43,6 @@ class Login extends Component {
 
 
   render() {
-    fetch('/users', {method: 'GET', headers: {"Content-Type": "application/json"}}).then((resp) => {
-      console.log(resp.data)
-    })
     return (
       <SignIn 
         error={this.state.SignInError} 
