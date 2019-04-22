@@ -21,13 +21,31 @@ exports.create = function create(request, response) {
         lastName: request.body.lastName,
         email: request.body.email,
         username: request.body.username,
-        password: request.body.password,
-        state: request.body.state,
-        schoolType: request.body.schoolType,
-        schoolSchedule: request.body.schoolSchedule
+        password: request.body.password
     })
     newuser.save().then(saveduser => {
         console.log(saveduser)
     })
     response.send(200)
 }
+
+
+exports.login = function login(request, response) {
+    let model = userModel.findOne({
+        username: request.body.username, 
+        password: request.body.password
+    }, function(err, doc){
+        if(err || !doc){
+            response.send(403)
+            return
+        }
+        response.cookie('userid', doc._id, { 
+            maxAge: 1000 * 60 * 60, 
+            httpOnly: true 
+        });
+        response.sendStatus(200)
+
+    })
+    
+}
+

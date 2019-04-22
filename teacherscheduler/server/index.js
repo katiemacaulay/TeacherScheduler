@@ -7,8 +7,10 @@ const app = express();
 mongoose.connect('mongodb://birdman:m3owm3ow@ds163530.mlab.com:63530/final-project', {useNewUrlParser: true});
 
 const userRoutes = require("./routes/userRoute")
-
+const cookieParser = require('cookie-parser')
 app.use(bodyParser.json());
+app.use(cookieParser())
+
 app.use(userRoutes);
 
 app.use(express.static(path.resolve( __dirname, '../client/build')));

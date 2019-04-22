@@ -1,11 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const { list, show, create } = require("../controllers/userController");
+const { list, show, login, create } = require("../controllers/userController");
+const userModel = require("../models/userModel.js")
 
 
-router.get("/users", list);
-router.get("/user/:id", show);
-router.post("/user", create);
+function isAuthenticated(req, res, next) {
+    if (req.cookies.userid) {
+        userModel.findById(req.cookies.userid, function(err, doc){
+            if(err || !doc){
+                res.sendStatus(403)
+                return
+            }
+            next()
+        })
+    } else {
+        res.sendStatus(403)
+        return
+    }
+}
+
+router.get("/users", isAuthenticated, list);
+router.get("/user/:id", isAuthenticated, show);
+router.post("/user", isAuthenticated, create);
+router.post("/user", isAuthenticated, create);
+router.post("/login", login);
 
 
 module.exports = router;
