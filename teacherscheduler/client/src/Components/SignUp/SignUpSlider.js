@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
@@ -7,9 +7,9 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 
-import SignUp from "./SignUp";
-import Subscribe from "./Subscribe";
-import Confirm from "./ConfirmPage"
+import SignUp from "../../containers/SignUpContainer";
+import Subscribe from "../../containers/SubscribeContainer";
+import Confirm from "../../containers/ConfirmContainer"
 
 
 const styles = theme => ({
@@ -114,14 +114,19 @@ class SignUpSlider extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let data = {
-      'firstName': localStorage.getItem('firstName'),
-      'lastName': localStorage.getItem('lastName'),
-      'email': localStorage.getItem('email'),
-      'username': localStorage.getItem('username'),
-      'password': localStorage.getItem('password')
+      'firstName': this.props.firstName,
+      'lastName': this.props.lastName,
+      'email': this.props.email,
+      'username': this.props.username,
+      'password': this.props.password,
+      'passwordConfirmed': this.props.passwordConfirmed
     }
     console.log(data)
 
+    let notValid = Object.values(data).filter(x => x === '').length > 0
+    if(notValid){
+      return alert('you are missing a field')
+    }
     fetch('/user', {
       method: 'POST',
       headers: {
@@ -191,7 +196,7 @@ class SignUpSlider extends React.Component {
         <Button
         variant="contained"
         color="primary"
-        onClick={this.handleSubmit}
+        onClick={(e) => this.handleSubmit(e)}
         className={classes.button}
         disabled={this.state.value === -1 ? true : false}
         >
@@ -213,119 +218,3 @@ SignUpSlider.propTypes = {
 };
 
 export default withStyles(styles)(SignUpSlider);
-
-
-
-// import React, { Component } from "react";
-// import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import SignUpSignIn from "./LogInParts/SignUpSignIn";
-// import TopNavbar from "./LogInParts/TopNavBar";
-// import Secret from "./LogInParts/Secret";
-
-// class App extends Component {
-
-//   state = {
-//     signUpSignInError: "",
-//     authenticated: localStorage.getItem("token") || false
-//   }
-
-//   handleSignUp = (credentials) => {
-//     const { username, password, confirmPassword } = credentials;
-//     if (!username.trim() || !password.trim() ) {
-//       this.setState({
-//         signUpSignInError: "Must Provide All Fields"
-//       });
-//     } else {
-
-//       fetch("/api/users", {
-//         method: "POST",
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(credentials)
-//       }).then((res) => {
-//         return res.json();
-//       }).then((data) => {
-//         const { token } = data;
-//         localStorage.setItem("token", token);
-//         this.setState({
-//           signUpSignInError: "",
-//           authenticated: token
-//         });
-//       });
-//     }
-//   }
-
-//   handleSignIn = (credentials)=>{
-//     const { username, password} = credentials;
-//     if (!username.trim() || !password.trim() ) {
-//       this.setState({
-//         signUpSignInError: "Must Provide All Fields"
-//       });
-//     } else {
-
-//       fetch("/api/users", {
-//         method: "POST",
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(credentials)
-//       }).then((res) => {
-//         return res.json();
-//       }).then((data) => {
-//         const { token } = data;
-//         localStorage.setItem("token", token);
-//         this.setState({
-//           signUpSignInError: "",
-//           authenticated: token
-//         });
-//       });
-//     }  }
-
-//   handleSignOut = ()=> {
-//     localStorage.removeItem("token");
-//     this.setState({
-//       authenticated: false
-//     });
-//   }
-
-//   renderSignUpSignIn = ()=> {
-//     return (
-//       <SignUpSignIn 
-//         error={this.state.signUpSignInError} 
-//         onSignUp={this.handleSignUp}
-//         onSignIn={this.handleSignIn} 
-//       />
-//     );
-//   }
-
-//   renderApp() {
-//     return (
-//       <div>
-//         <Switch>
-//           <Route exact path="/" render={() => <h1>I am protected!</h1>} />
-//           <Route exact path="/secret" component={Secret} />
-//           <Route render={() => <h1>NOT FOUND!</h1>} />
-//         </Switch>
-//       </div>
-//     );
-//   }
-
-//   render() {
-//     let whatToShow = "";
-//     if (this.state.authenticated) {
-//       whatToShow = this.renderApp();
-//     } else {
-//       whatToShow = this.renderSignUpSignIn();
-//     }
-       
-//     return (
-//       <BrowserRouter>
-//         <div className="App">
-//           <TopNavbar 
-//             showNavItems={this.state.authenticated} 
-//             onSignOut={this.handleSignOut} />
-//           {whatToShow}
-//         </div>
-//       </BrowserRouter>
-//     );
-//   }
-// }
-
-// export default App;

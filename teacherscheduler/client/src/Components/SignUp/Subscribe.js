@@ -33,87 +33,62 @@ class SubscribeForm extends React.Component{
   constructor(props){
     super(props);
     this.classes = props.classes;
-    this.state={
-      firstName: '',
-      lastName: '',
-      email: ''
-    }
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
- 
-  handleInputChange(e) {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    let data = this.state
-
-    fetch('/user', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json" 
-      },
-      body: JSON.stringify(data)
-    });
-    alert('you made an user!')
-  }
-
-  render(){
+  render(props){
     return (
       <main className={this.classes.main}>
       <CssBaseline>
-      <form className={this.classes.form} onSubmit={this.handleSubmit.bind(this)}>
+      <form className={this.classes.form} 
+      >
         <FormGroup className={this.classes.boxes}>
         <FormLabel>
           First Name </FormLabel>
           <FormControl
+            required={true}
             className={this.classes.boxSize}
             type="firstName"
             name="firstName"
             onChange={e => {
-              this.setState({[e.target.name]: e.target.value});
-              localStorage.setItem([e.target.name], e.target.value);
+              if(this.props.firstName){
+                this.props.firstName(e.target.value)
+              }
             }}
             placeholder=" Enter First Name"
-            value={this.state.firstName}
           />
         </FormGroup>
 
           <FormGroup className={this.classes.boxes}>
            <FormLabel>Last Name </FormLabel>
           <FormControl
+            required={true}
             className={this.classes.boxSize}
             type="lastName"
             name="lastName"
             onChange={e => {
-              this.setState({[e.target.name]: e.target.value});
-              localStorage.setItem([e.target.name], e.target.value)
+              if(this.props.lastName){
+                this.props.lastName(e.target.value)
+              }
             }}
             placeholder=" Enter Last Name"
-            value={this.state.lastName}
+            // value={this.state.lastName}
           />
            </FormGroup>
 
           <FormGroup className={this.classes.boxes}>
            <FormLabel>Email </FormLabel>
           <FormControl
+            required={true}
             className={this.classes.boxSize}
             type="email"
             name="email"
             onChange={e => {
-              this.setState({[e.target.name]: e.target.value});
-              localStorage.setItem([e.target.name], e.target.value)
+              if(this.props.email){
+                this.props.email(e.target.value)
+              }
             }}
             placeholder=" Enter Email Address"
-            value={this.state.email}
+            // value={this.state.email}
           />
         </FormGroup>
 

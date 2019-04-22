@@ -34,5 +34,12 @@ function firstName(state = '', action){
       }
       return state;
   }
+
+  function passwordConfirm(state = '', action){
+    if(action.type === "ADD_PASSWORD_CONFIRM"){
+        return action.value
+      }
+      return state;
+  }
   
-  export default combineReducers({firstName, lastName, email, username, password})
+  export default combineReducers({firstName, lastName, email, username, password, passwordConfirm})

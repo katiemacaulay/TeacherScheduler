@@ -28,3 +28,10 @@ export function addUserPassword(txt){
     value:txt
   }
 }
+
+export function addUserPasswordConfirmed(txt){
+  return {
+    type:"ADD_PASSWORD_CONFIRM",
+    value:txt
+  }
+}

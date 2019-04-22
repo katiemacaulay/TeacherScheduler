@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Schedule from "./MainPage/Schedule";
-import SignUp from "./SignUp/SignUpSlider";
+import SignUp from "../containers/SignUpStepperContainer";
 import LogIn from "./LogIn"
 
 
@@ -38,6 +38,8 @@ function TabContainer(props) {
       this.setState({ value });
     };
   
+    
+
     render() {
       const { classes } = this.props;
       const { value } = this.state;

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+// import ListItemText from '@material-ui/core/ListItemText';
 
 const styles = theme => ({
   root: {
@@ -17,9 +17,6 @@ const styles = theme => ({
 
 function ConfirmPage(props) {
   const { classes } = props;
-
-
-
   return (
     <div>
       <div className={classes.root} elevation={1}>
@@ -29,16 +26,16 @@ function ConfirmPage(props) {
         <Typography component="p">
             <List>
                 <ListItem>
-                   First Name: {localStorage.getItem('firstName')}
+                   First Name: {props.firstName}
                 </ListItem>
                 <ListItem>
-                    Last Name: {localStorage.getItem('lastName')}
+                    Last Name: {props.lastName}
                 </ListItem>
                 <ListItem>
-                    Email: {localStorage.getItem('email')}
+                    Email: {props.email}
                 </ListItem>
                 <ListItem>
-                    Username:{localStorage.getItem('username')}
+                    Username:{props.username}
                 </ListItem>
                 <ListItem>
                     Password: *Protected*

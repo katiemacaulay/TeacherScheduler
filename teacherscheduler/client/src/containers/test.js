@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { FormGroup, FormLabel, FormControl } from "react-bootstrap";
+import PropTypes from "prop-types";
+import { FormGroup, FormLabel, FormControl, Button } from "react-bootstrap";
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -26,29 +27,27 @@ class SignUp extends Component {
   constructor(props) {
     super();
     this.classes = props.classes;
-    // this.state = {
-    //   username: "",
-    //   password: "",
-    //   confirmPassword: "",
-    // };
+    this.state = {
+      username: "",
+      password: "",
+      confirmPassword: "",
+    };
   }
 
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   this.props.onSignUp({
-  //     username: this.state.username,
-  //     password: this.state.password,
-  //     confirmPassword: this.state.confirmPassword
-  //   });
-  // }
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.onSignUp({
+      username: this.state.username,
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword
+    });
+  }
 
-  render(props) {
+  render() {
     return (
       <main className={this.classes.main}>
       <CssBaseline>
-      <form className={this.classes.form} 
-      // onSubmit={this.handleSubmit.bind(this)}
-      >
+      <form className={this.classes.form} onSubmit={this.handleSubmit.bind(this)}>
         <FormGroup className={this.classes.boxes}>
           <FormLabel>Username  </FormLabel>
           <FormControl
@@ -56,12 +55,11 @@ class SignUp extends Component {
             type="username"
             name="username"
             onChange={e => {
-              if(this.props.username){
-                this.props.username(e.target.value)
-              }
+              this.setState({[e.target.name]: e.target.value});
+              localStorage.setItem([e.target.name], e.target.value)
             }}
             placeholder=" Enter Username"
-            // value={this.state.username}
+            value={this.state.username}
           />
         </FormGroup>
 
@@ -72,12 +70,11 @@ class SignUp extends Component {
             type="password"
             name="password"
             onChange={e => {
-              if(this.props.password){
-                this.props.password(e.target.value)
-              }
+              this.setState({[e.target.name]: e.target.value});
+              localStorage.setItem([e.target.name], e.target.value)
             }}
             placeholder=" Enter Password"
-            // value={this.state.password}
+            value={this.state.password}
           />
         </FormGroup>
 
@@ -88,12 +85,10 @@ class SignUp extends Component {
             type="password"
             name="confirmPassword"
             onChange={e => {
-              if(this.props.passwordConfirmed){
-                this.props.passwordConfirmed(e.target.value)
-              }
+              this.setState({[e.target.name]: e.target.value});
             }}
             placeholder=" Confirm Password"
-            // value={this.state.confirmPassword}
+            value={this.state.confirmPassword}
           />
         </FormGroup>
       </form>

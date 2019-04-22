@@ -3,5 +3,7 @@ export default{
     lastName: '',
     email: '',
     username: '',
-    password: ''
+    password: '',
+    passwordConfirmed: ''
+    // courses: []
   }

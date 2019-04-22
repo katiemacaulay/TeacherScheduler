@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import Calendar from './Components/MainPage/Calendar';
+import Calendar from './Components/MainPage/AddClass';
 import LogInTab from './Components/LogInTab'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 

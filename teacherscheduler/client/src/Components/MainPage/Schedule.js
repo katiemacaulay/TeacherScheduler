@@ -11,4 +11,4 @@ class Schedule extends React.Component{
     );
   }
 }
-export default Calendar;
+export default Schedule;

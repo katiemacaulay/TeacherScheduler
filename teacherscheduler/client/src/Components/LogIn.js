@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SignIn from "./SignUp/SignIn";
-import Calendar from "./MainPage/Calendar";
+// import Calendar from "./MainPage/Calendar";
 
 class Login extends Component {
 
