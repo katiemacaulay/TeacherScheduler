@@ -46,6 +46,7 @@ class addClass extends React.Component{
   
     render(props){
       return (
+        <div>
         <React.Fragment>
           <Typography variant="h6" gutterBottom>
             Add a Class
@@ -103,6 +104,7 @@ class addClass extends React.Component{
             </Grid>
           </Grid>
         </React.Fragment>
+        </div>
       );
     }
 }
