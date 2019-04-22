@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ConfirmPage from "/Users/katiemacaulay/finalProject/teacherscheduler/client/src/Components/SignUp/ConfirmPage";
+import ConfirmPage from "../Components/SignUp/ConfirmPage";
 
 
 function mapStateToProps(state){

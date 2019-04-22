@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SignUpSlider from "/Users/katiemacaulay/finalProject/teacherscheduler/client/src/Components/SignUp/SignUpSlider";
+import SignUpSlider from "../Components/SignUp/SignUpSlider";
 
 
 function mapStateToProps(state){

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {addUser, addUserPassword, addUserPasswordConfirmed } from "../actions";
-import SignUp from "/Users/katiemacaulay/finalProject/teacherscheduler/client/src/Components/SignUp/SignUp";
+import SignUp from "../Components/SignUp/SignUp";
 
 
 const mapDispatchToProps = {
