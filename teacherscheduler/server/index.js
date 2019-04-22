@@ -3,11 +3,12 @@ const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const path = require('path');
 const app = express();
+const userRoutes = require("./routes/userRoute")
+const cookieParser = require('cookie-parser')
 
 mongoose.connect('mongodb://birdman:m3owm3ow@ds163530.mlab.com:63530/final-project', {useNewUrlParser: true});
 
-const userRoutes = require("./routes/userRoute")
-const cookieParser = require('cookie-parser')
+
 app.use(bodyParser.json());
 app.use(cookieParser())
 
