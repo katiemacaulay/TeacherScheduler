@@ -1,0 +1,9 @@
+{
+    "name": "teacherscheduler",
+    "version": "0.1.0",
+    "scripts": {
+        "start": "node ./teacherscheduler/server/index.js",
+        "heroku-postbuild": "cd teacherscheduler/server && npm install && cd../../teacherscheduler/client && npm install && npm run build"
+    }
+
+}
