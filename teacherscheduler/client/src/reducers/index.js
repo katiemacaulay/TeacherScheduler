@@ -1,4 +1,4 @@
-import { combineReducers } from "../../../../../Library/Caches/typescript/3.4.3/node_modules/redux";
+import { combineReducers } from 'redux'
 
 function firstName(state = '', action){
     if(action.type === "ADD_FIRST_NAME"){
