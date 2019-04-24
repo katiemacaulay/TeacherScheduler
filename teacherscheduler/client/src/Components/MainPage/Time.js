@@ -12,6 +12,8 @@ class Example extends React.Component {
   }
  
   handleChangeTime(date) {
+    console.log(date)
+    console.log(this.state.startDate)
     this.setState({
       startDate: date
     });

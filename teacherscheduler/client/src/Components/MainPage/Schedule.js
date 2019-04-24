@@ -3,6 +3,7 @@ import Calendar from './Calendar';
 import Today from './Today';
 import ThisWeek from './ThisWeek';
 import AddClass from './AddClass'
+import Time from './Time'
 import './style.css';
 
 class Schedule extends React.Component{
@@ -12,8 +13,9 @@ class Schedule extends React.Component{
         <div className="page">
           <Calendar/>
           {/* <AddClass/> */}
-          <Today/>
-          <ThisWeek/>
+          <Time/>
+          {/* <Today/>
+          <ThisWeek/> */}
         </div>
     );
   }
