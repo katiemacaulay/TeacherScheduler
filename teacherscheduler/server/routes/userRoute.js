@@ -24,9 +24,5 @@ router.get("/user/:id", isAuthenticated, show);
 router.post("/user", create);
 router.post("/login", login);
 
-// router.post("/schedule",  list); 
-// router.get("/schedule/:id", show);
-// 
-
 
 module.exports = router;

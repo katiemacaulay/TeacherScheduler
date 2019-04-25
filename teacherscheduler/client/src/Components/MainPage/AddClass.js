@@ -9,6 +9,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import DatePicker from "react-datepicker";
+import Button from '@material-ui/core/Button';
 import "react-datepicker/dist/react-datepicker.css"
 
 
@@ -47,7 +48,7 @@ class addClass extends React.Component{
         th: false,
         f: false,
         days: ['m', 't', 'w', 'th', 'f'],
-        rotation: '',
+        rotation: 0,
         labelWidth: 0,
         startDate: new Date(),
         endDate: new Date()
@@ -65,14 +66,16 @@ class addClass extends React.Component{
     }
   
     handleChangeTime(date) {
+      let start = date.toString()
       this.setState({
-        startDate: date
+        startDate: start
       });
     }
 
     handleChangeTimeEnd(date) {
+      let end = date.toString()
       this.setState({
-        endDate: date
+        endDate: end
       });
     }
 
@@ -82,36 +85,30 @@ class addClass extends React.Component{
       });
     }
 
-    // handleSubmit(e) {
-    //   e.preventDefault();
-    //   let data = {
-    //     'courseName': this.state.courseName,
-    //     'days': [
-    //       this.state.m,
-    //       this.state.t,
-    //       this.state.w,
-    //       this.state.th,
-    //       this.state.f
-    //     ],
-    //     'rotation': this.state.rotation,
-    //     'startDate': this.state.startDate,
-    //     'endDate': this.state.endDate
-    //   }
-    //   console.log(data)
+    handleSubmit(e) {
+      e.preventDefault();
+      let data = {
+        'courseName': this.state.courseName,
+        'days': [
+          this.state.m,
+          this.state.t,
+          this.state.w,
+          this.state.th,
+          this.state.f
+        ],
+        'rotation': this.state.rotation,
+        'startTime': this.state.startDate,
+        'endTime': this.state.endDate
+      }
   
-    //   let notValid = Object.values(data).filter(x => x === '').length > 0
-    //   if(notValid){
-    //     return alert('you are missing a field')
-    //   }
-    //   fetch('/user', {
-    //     method: 'POST',
-    //     headers: {
-    //       "Content-Type": "application/json" 
-    //     },
-    //     body: JSON.stringify(data)
-    //   });
-    //   alert('you made an user!')
-    // }
+      fetch('http://localhost:5000/schedule/add', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json" 
+        },
+        body: JSON.stringify(data)
+      });
+    }
 
 
     render(props){
@@ -123,7 +120,15 @@ class addClass extends React.Component{
           </Typography>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <TextField required id="courseName" label="Name of Class" fullWidth />
+              <TextField required 
+              type="courseName"
+              name="courseName"
+              placeholder="Class Name"
+              value={this.state.courseName}
+              onChange={e => {
+                this.setState({[e.target.name]: e.target.value});
+              }}
+              />
             </Grid>
             <Grid item xs={12} md={6}>
               <FormLabel component="DatePicker">Start Time </FormLabel>
@@ -192,7 +197,15 @@ class addClass extends React.Component{
 
           </Select> 
           </div>         
-        </Grid>
+            </Grid>
+            <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => this.handleSubmit(e)}
+            // className={classes.button}
+            >
+            Add Class
+            </Button>
           </Grid>
         </React.Fragment>
         </div>

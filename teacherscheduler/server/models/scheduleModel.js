@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 
 let scheduleSchema = new mongoose.Schema({
         courseName: String,
-        days: Array,
+        days: String,
         rotation: Number,
         startTime: String,
         endTime: String,
