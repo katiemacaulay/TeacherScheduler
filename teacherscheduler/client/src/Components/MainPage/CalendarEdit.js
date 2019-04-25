@@ -57,9 +57,9 @@ class CalendarEdit extends React.Component{
           }
           onDayClick={this.handleDayClick} />
         {this.state.selectedDay ? (
-          <p>You clicked {this.state.selectedDay}</p>
+          <p>{this.state.selectedDay}</p>
         ) : (
-          <p>Please select a day.</p>
+          <p></p>
         )}
         </div>
     );

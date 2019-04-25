@@ -5,20 +5,6 @@ import LogInTab from './Components/LogInTab'
 import LogIn from './Components/LogIn'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <div>
-//          <LogInTab/>
-//          {/* <Calendar/> */}
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
-
 function AppRouter() {
   return (
     <Router>
@@ -27,19 +13,14 @@ function AppRouter() {
           <ul>
             {/* <li>
               <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/schedule/">Schedule</Link>
-            </li> */}
-            {/* <li>
-              <Link to="/users/">Users</Link>
-            </li> */}
+            </li>*/}
           </ul>
         </nav>
 
         <Route path="/" exact component={LogInTab} />
         <Route path="/login" exact component={LogIn} />
         <Route path="/schedule" component={Calendar} />
+
         {/* <Route path="/users/" component={Users} /> */}
       </div>
     </Router>
