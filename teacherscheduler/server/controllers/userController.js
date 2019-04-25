@@ -26,17 +26,20 @@ exports.create = function create(request, response) {
     newuser.save().then(saveduser => {
         console.log(saveduser)
     })
-    response.send(200)
+    response.sendStatus(200)
 }
 
 
 exports.login = function login(request, response) {
-    let model = userModel.findOne({
+    console.log('in login body', request.body)
+    userModel.findOne({
         username: request.body.username, 
         password: request.body.password
     }, function(err, doc){
+        console.log('in db callback')
         if(err || !doc){
-            response.send(403)
+            console.log("not a real user")
+            response.sendStatus(403)
             return
         }
         response.cookie('userid', doc._id, { 

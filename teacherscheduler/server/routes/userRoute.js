@@ -19,8 +19,8 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-router.get("/users", isAuthenticated, list);
-router.get("/user/:id", isAuthenticated, show);
+router.get("/user:id", isAuthenticated, list);
+router.get("/users", isAuthenticated, show);
 router.post("/user", create);
 router.post("/login", login);
 

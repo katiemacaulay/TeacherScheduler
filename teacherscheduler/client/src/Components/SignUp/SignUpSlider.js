@@ -129,7 +129,7 @@ class SignUpSlider extends React.Component {
     if(notValid){
       return alert('you are missing a field')
     }
-    fetch('http://localhost:5000/user', {
+    fetch('/user', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json" 

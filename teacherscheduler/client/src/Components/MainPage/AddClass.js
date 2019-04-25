@@ -101,7 +101,7 @@ class addClass extends React.Component{
         'endTime': this.state.endDate
       }
   
-      fetch('http://localhost:5000/schedule/add', {
+      fetch('/schedule/add', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json" 

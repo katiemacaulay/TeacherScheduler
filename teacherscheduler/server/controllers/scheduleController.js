@@ -5,11 +5,10 @@ exports.list = function list(request, response) {
     scheduleModel.find().exec().then((classes)=>{
         classes.filter(user => {
             // I need to filter through each class for the same id
-            if(user.id){
+            if(user.id === 3){
                 return response.json(classes);
-            } else {
-                console.log('this user has no courses made')
-            }
+            } 
+            console.log('this user has no courses made')
         })
     })
 }
