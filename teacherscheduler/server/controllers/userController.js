@@ -43,6 +43,7 @@ exports.login = function login(request, response) {
             maxAge: 1000 * 60 * 60, 
             httpOnly: true 
         });
+        console.log("you're logged in")
         response.sendStatus(200)
 
     })

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SignIn from "./SignUp/SignIn";
+import { Redirect } from "react-router-dom";
 // import Calendar from "./MainPage/Calendar";
 
 class Login extends Component {
@@ -16,7 +17,7 @@ class Login extends Component {
         SignInError: "Must Provide All Fields"
       });
     } else {
-      fetch("/login", {
+      fetch('http://localhost:5000/user', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(credentials)
@@ -42,6 +43,9 @@ class Login extends Component {
 
 
   render() {
+    if (this.state.authenticated){
+      return <Redirect to='/schedule'/>
+    }
     return(
       <SignIn 
         error={this.state.SignInError} 

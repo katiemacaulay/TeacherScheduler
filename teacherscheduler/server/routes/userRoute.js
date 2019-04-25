@@ -21,9 +21,12 @@ function isAuthenticated(req, res, next) {
 
 router.get("/users", isAuthenticated, list);
 router.get("/user/:id", isAuthenticated, show);
-router.post("/user", isAuthenticated, create);
-router.post("/user", isAuthenticated, create);
+router.post("/user", create);
 router.post("/login", login);
+
+// router.post("/schedule",  list); 
+// router.get("/schedule/:id", show);
+// 
 
 
 module.exports = router;

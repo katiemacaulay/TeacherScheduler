@@ -12,10 +12,10 @@ class Schedule extends React.Component{
     return (
         <div className="page">
           <Calendar/>
-          {/* <AddClass/> */}
-          <Time/>
-          {/* <Today/>
-          <ThisWeek/> */}
+          <AddClass/>
+          {/* <Time/> */}
+          <Today/>
+          <ThisWeek/>
         </div>
     );
   }

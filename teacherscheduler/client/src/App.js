@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Calendar from './Components/MainPage/Schedule';
 import LogInTab from './Components/LogInTab'
+import LogIn from './Components/LogIn'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // class App extends Component {
@@ -24,12 +25,12 @@ function AppRouter() {
       <div>
         <nav>
           <ul>
-            <li>
+            {/* <li>
               <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/schedule/">Schedule</Link>
-            </li>
+            </li> */}
             {/* <li>
               <Link to="/users/">Users</Link>
             </li> */}
@@ -37,6 +38,7 @@ function AppRouter() {
         </nav>
 
         <Route path="/" exact component={LogInTab} />
+        <Route path="/login" exact component={LogIn} />
         <Route path="/schedule" component={Calendar} />
         {/* <Route path="/users/" component={Users} /> */}
       </div>

@@ -6,6 +6,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
+import { Redirect } from "react-router-dom";
 
 import SignUp from "../../containers/SignUpContainer";
 import Subscribe from "../../containers/SubscribeContainer";
@@ -51,6 +52,7 @@ class SignUpSlider extends React.Component {
     activeStep: 0,
     completed: {},
     warning: true,
+    signUpConfirmed: false
   };
 
   totalSteps = () => getSteps().length;
@@ -127,19 +129,26 @@ class SignUpSlider extends React.Component {
     if(notValid){
       return alert('you are missing a field')
     }
-    fetch('/user', {
+    fetch('http://localhost:5000/user', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json" 
       },
       body: JSON.stringify(data)
+    }).then(()=>{
+      this.setState({
+        signUpConfirmed: true
+      })
     });
   }
 
   render() {
     const { classes } = this.props;
-    const steps = getSteps();
+    const steps = getSteps(); 
     const { activeStep } = this.state;
+    if(this.state.signUpConfirmed){
+      return <Redirect to='/login'/>
+    }
     return (
     <Card className={classes.root}>
     <Stepper activeStep={activeStep}>
