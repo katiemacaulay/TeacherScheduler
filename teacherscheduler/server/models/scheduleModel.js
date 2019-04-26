@@ -7,7 +7,7 @@ let scheduleSchema = new mongoose.Schema({
         rotation: Number,
         startTime: String,
         endTime: String,
-        id: Number
+        userid: String
 })
 
 module.exports = mongoose.model('schedule',  scheduleSchema);

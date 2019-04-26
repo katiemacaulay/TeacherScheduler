@@ -1,19 +1,19 @@
 const scheduleModel = require("../models/scheduleModel")
 
 
-exports.list = function list(request, response) {
+exports.coursesGet = function courses(request, response) {
     scheduleModel.find().exec().then((classes)=>{
-        classes.filter(user => {
-            // I need to filter through each class for the same id
-            if(user.id === 3){
-                return response.json(classes);
-            } 
-            console.log('this user has no courses made')
-        })
+        const c = classes.filter(course => {
+            return course.userid === request.cookies.userid
+        }) 
+        if (!c) {
+            return response.send(404)
+        }
+        return response.json(c);
     })
 }
 
-exports.create = function create(request, response) {
+exports.coursesAdd = function add(request, response) {
     console.log(request.body)
     const newclass = new scheduleModel({
         courseName: request.body.courseName,
@@ -21,12 +21,14 @@ exports.create = function create(request, response) {
         rotation: request.body.rotation,
         startTime: request.body.startTime,
         endTime: request.body.endTime,
-        id: request.body.id
+        userid: request.cookies.userid
     })
     newclass.save().then(saveclass => {
         console.log(saveclass)
+        response.send(200)
+    }).catch(err => {
+        response.send(500)
     })
-    response.send(200)
 }
 
 

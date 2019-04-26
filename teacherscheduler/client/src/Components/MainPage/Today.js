@@ -53,10 +53,10 @@ class Today extends React.Component {
         <Typography variant="h5" component="h3">
           Today's Classes August 20th!
         </Typography>
-        <Typography component="p">
+        <Typography component="div">
             <List>
               {this.state.schedule.map((course, i) => {
-                return <ListItem>
+                return <ListItem key={i}>
                 <div className={this.classes.info}>
                     {course.name}
                 </div>

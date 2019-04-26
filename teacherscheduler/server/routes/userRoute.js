@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { list, show, login, create } = require("../controllers/userController");
+const { coursesGet, coursesAdd } = require("../controllers/scheduleController");
 const userModel = require("../models/userModel.js")
 
 
@@ -19,10 +20,12 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-router.get("/user:id", isAuthenticated, list);
-router.get("/users", isAuthenticated, show);
-router.post("/user", create);
-router.post("/login", login);
+router.get("/api/user:id", isAuthenticated, list);
+router.get("/api/users", isAuthenticated, show);
+router.post("/api/user", create);
+router.post("/api/login", login);
+router.get('/api/schedule', isAuthenticated, coursesGet);
+router.post('/api/schedule/add', isAuthenticated, coursesAdd);
 
 
 module.exports = router;

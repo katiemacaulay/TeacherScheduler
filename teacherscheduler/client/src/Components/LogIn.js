@@ -17,7 +17,7 @@ class Login extends Component {
         SignInError: "Must Provide All Fields"
       });
     } else {
-      fetch('/login', {
+      fetch('/api/login', {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(credentials)
@@ -26,7 +26,7 @@ class Login extends Component {
           SignInError: "",
           authenticated: true
         })
-        // localStorage.setItem('authenticated', true);
+        localStorage.setItem('authenticated', true);
         this.forceUpdate();
       }).catch(error => {
         console.log(error)

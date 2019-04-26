@@ -89,19 +89,13 @@ class addClass extends React.Component{
       e.preventDefault();
       let data = {
         'courseName': this.state.courseName,
-        'days': [
-          this.state.m,
-          this.state.t,
-          this.state.w,
-          this.state.th,
-          this.state.f
-        ],
+        'days': '',
         'rotation': this.state.rotation,
         'startTime': this.state.startDate,
         'endTime': this.state.endDate
       }
   
-      fetch('/schedule/add', {
+      fetch('/api/schedule/add', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json" 
@@ -131,7 +125,7 @@ class addClass extends React.Component{
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormLabel component="DatePicker">Start Time </FormLabel>
+              <FormLabel>Start Time </FormLabel>
               <DatePicker
                   selected={this.state.startDate}
                   onChange={this.handleChangeTime}
@@ -143,7 +137,7 @@ class addClass extends React.Component{
               />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormLabel component="DatePicker">End Time </FormLabel>
+              <FormLabel>End Time </FormLabel>
                 <DatePicker
                     selected={this.state.endDate}
                     onChange={this.handleChangeTimeEnd}
@@ -158,11 +152,10 @@ class addClass extends React.Component{
               <FormLabel>Option 1 </FormLabel>
               <div>
                 {this.state.days.map((day, i) => {
-                  return <div className={this.classes.inline}>
+                  return <div key={i} className={this.classes.inline}>
                   <div className={this.classes.inline}>{day}</div>
                   <Checkbox 
                   className={this.classes.inline}
-                  key={i}
                   checked={this.state.day}
                   onChange={this.handleCheckbox(day)}
                   value={this.state.day}

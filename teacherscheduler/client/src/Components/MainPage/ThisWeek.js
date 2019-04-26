@@ -23,7 +23,7 @@ function ThisWeek(props) {
         <Typography variant="h5" component="h3">
             This Week:
         </Typography>
-        <Typography component="p">
+        <Typography component="div">
             <List>
                 <ListItem>
                   {/* <Test/> */}

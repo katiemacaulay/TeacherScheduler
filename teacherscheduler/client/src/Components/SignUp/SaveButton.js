@@ -31,7 +31,7 @@ class SubscribeForm extends React.Component{
     e.preventDefault();
     let data = this.state
 
-    fetch('/user', {
+    fetch('/api/user', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json" 
