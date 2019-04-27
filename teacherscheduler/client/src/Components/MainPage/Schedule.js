@@ -2,7 +2,7 @@ import React from 'react';
 import Calendar from "../../containers/CalendarContainer";
 import Today from "../../containers/TodayContainer";
 import ThisWeek from './ThisWeek';
-import AddClass from './AddClass';
+import Modal from './Modal'
 import './style.css';
 
 class Schedule extends React.Component{
@@ -35,12 +35,13 @@ class Schedule extends React.Component{
  
   render(){
     return (
+      <div style={ { margin: 45 } }>
         <div className="page">
-          <Calendar/>
-          {/* <AddClass/> */}
+          <div style={ { paddingTop: 15 } }><Calendar/><Modal/></div>
           <Today courses={this.state.courses}/>
           <ThisWeek courses={this.state.courses}/>
         </div>
+      </div>
     );
   }
 }

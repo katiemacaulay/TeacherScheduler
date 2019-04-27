@@ -9,20 +9,11 @@ function AppRouter() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            {/* <li>
-              <Link to="/">Home</Link>
-            </li>*/}
-          </ul>
-        </nav>
-
         <Route path="/" exact component={LogInTab} />
         <Route path="/login" exact component={LogIn} />
         <Route path="/schedule" component={Calendar} />
-
-        {/* <Route path="/users/" component={Users} /> */}
       </div>
+      <footer style= {{position:"absolute",left:5,bottom:0,right:0}}> @2019 Katie Macaulay</footer>
     </Router>
   );
 }

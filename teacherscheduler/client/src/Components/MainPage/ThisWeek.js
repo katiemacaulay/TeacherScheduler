@@ -13,10 +13,9 @@ const styles = theme => ({
     marginBottom: 20
   },
   courseName:{
-    width: 200
+    width: 150
   },
   info: {
-    marginRight: 7,
     width: 70
   }
 });
@@ -50,7 +49,7 @@ class ThisWeek extends React.Component {
     <div>
       <div className={this.classes.root} elevation={1}>
         <Typography variant="h5" component="h3">
-          This Week's Classes August 20th!
+          This Week's Classes
         </Typography>
         <Typography component="div">
             <List>
@@ -71,12 +70,6 @@ class ThisWeek extends React.Component {
               {console.log(this.props.courses)}
               {this.sortDates(this.props.courses).map((course, i) => {
                 return <ListItem key={i}>
-                <div className={this.classes.info}>
-                    {this.formatDate(course.startTime)}
-                </div>
-                <div className={this.classes.info}>
-                    {this.formatDate(course.endTime)}
-                </div>
                 <div className={this.classes.courseName}>
                     {course.courseName}
                 </div>

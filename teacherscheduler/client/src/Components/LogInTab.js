@@ -25,7 +25,11 @@ function TabContainer(props) {
   const styles = theme => ({
     root: {
       flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
+      backgroundImage: "url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80')",
+      backgroundSize: "cover",
+      height: "100%",
+      width: "100%",
+      position: "absolute"
     },
   });
   

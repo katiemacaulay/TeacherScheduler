@@ -13,12 +13,19 @@ const styles = theme => ({
     marginBottom: 20
   },
   courseName:{
-    width: 200
+    width: 150,
+    marginRight: 5
   },
   info: {
-    marginRight: 7,
-    width: 70
-  }
+    width: 100
+  },
+  paper: {
+    width: theme.spacing.unit * 70,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 2,
+    outline: 'none',
+  },
 });
 
  function hours12(date) { 
@@ -34,14 +41,14 @@ const styles = theme => ({
     }
   }
   function sortDates(courses) {
-    return courses
+    return courses.filter(course => (course.days.split('')).includes("t"))
   }
 
 
 function Today(props) {
   const { classes } = props;
   return (
-    <div>
+    <div className={classes.paper}>
       <div className={classes.root} elevation={1}>
         <Typography variant="h5" component="h3">
           Today's Classes
@@ -49,11 +56,8 @@ function Today(props) {
         <Typography component="div">
             <List>
             <ListItem>
-                <div className={classes.info}>
-                    Start Time
-                </div>
-                <div className={classes.info}>
-                    End Time
+                <div className={classes.courseName}>
+                    Time
                 </div>
                 <div className={classes.courseName}>
                     Class
@@ -65,10 +69,8 @@ function Today(props) {
               {console.log(props.courses)}
               {sortDates(props.courses).map((course, i) => {
                 return <ListItem key={i}>
-                <div className={classes.info}>
-                    {formatDate(course.startTime)}
-                </div>
-                <div className={classes.info}>
+                <div className={classes.courseName}>
+                    {formatDate(course.startTime)} -
                     {formatDate(course.endTime)}
                 </div>
                 <div className={classes.courseName}>
