@@ -32,4 +32,21 @@ exports.coursesAdd = function add(request, response) {
     })
 }
 
-
+// UPDATE
+exports.update = function update(request, response) {
+    const course = request.body
+    console.log("update", course)
+    Course.findOneAndUpdate({ _id: course._id }, course)
+    .then(updatedCourse => {
+    response.json(updatedCourse);
+    });
+};
+    
+    // DELETE
+exports.remove = function remove(request, response) {
+    const id = request.params.id
+    scheduleModel.remove({ _id: id })
+    .then(() => {
+    response.send("deleted");
+    });
+};

@@ -53,21 +53,6 @@ class ThisWeek extends React.Component {
         </Typography>
         <Typography component="div">
             <List>
-            {/* <ListItem>
-                <div className={this.classes.info}>
-                    Start Time
-                </div>
-                <div className={this.classes.info}>
-                    End Time
-                </div>
-                <div className={this.classes.courseName}>
-                    Class
-                </div>
-                <div className={this.classes.info}>
-                    Lesson
-                </div>
-              </ListItem>     */}
-              {console.log(this.props.courses)}
               {this.sortDates(this.props.courses).map((course, i) => {
                 return <ListItem key={i}>
                 <div className={this.classes.courseName}>

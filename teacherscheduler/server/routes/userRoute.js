@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { list, show, login, create } = require("../controllers/userController");
-const { coursesGet, coursesAdd } = require("../controllers/scheduleController");
+const { coursesGet, coursesAdd, remove } = require("../controllers/scheduleController");
 const userModel = require("../models/userModel.js")
 
 
@@ -26,6 +26,6 @@ router.post("/api/user", create);
 router.post("/api/login", login);
 router.get('/api/schedule', isAuthenticated, coursesGet);
 router.post('/api/schedule/add', isAuthenticated, coursesAdd);
-
+router.delete('/api/schedule/:id', isAuthenticated, remove);
 
 module.exports = router;
