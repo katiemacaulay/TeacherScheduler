@@ -35,9 +35,9 @@ const styles = theme => ({
     let date = new Date(d)
     let minutes = ('0'+ date.getMinutes()).slice(-2)
     if (date.getHours() > 11) {
-      return hours12(date) + ':' + minutes + 'AM'
-    }  else {
       return hours12(date) + ':' + minutes + 'PM'
+    }  else {
+      return hours12(date) + ':' + minutes + 'AM'
     }
   }
   function sortDates(courses) {
@@ -51,7 +51,7 @@ function Today(props) {
     <div className={classes.paper}>
       <div className={classes.root} elevation={1}>
         <Typography variant="h5" component="h3">
-          Today's Classes
+          Today's Classes 
         </Typography>
         <Typography component="div">
             <List>

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import AddClass from './AddClass'
+import RemoveList from './RemoveList'
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -38,7 +38,7 @@ const styles = theme => ({
   }
 });
 
-class SimpleModal extends React.Component {
+class RemoveModal extends React.Component {
   state = {
     open: false,
   };
@@ -56,7 +56,7 @@ class SimpleModal extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.handleOpen} className={classes.button}>Add A Class</Button>
+        <Button onClick={this.handleOpen} className={classes.button}>Remove a Class</Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -64,7 +64,7 @@ class SimpleModal extends React.Component {
           onClose={this.handleClose}
         >
           <div style={getModalStyle()} className={classes.paper}>
-            <AddClass getSchedule={this.props.getSchedule}/>
+            <RemoveList courses={this.props.courses}/>
           </div>
         </Modal>
       </div>
@@ -72,11 +72,11 @@ class SimpleModal extends React.Component {
   }
 }
 
-SimpleModal.propTypes = {
+RemoveModal.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 // We need an intermediary variable for handling the recursive nesting.
-const SimpleModalWrapped = withStyles(styles)(SimpleModal);
+const RemoveModalWrapped = withStyles(styles)(RemoveModal);
 
-export default SimpleModalWrapped;
+export default RemoveModalWrapped;

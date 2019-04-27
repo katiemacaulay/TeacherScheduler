@@ -123,7 +123,9 @@ class addClass extends React.Component{
           "Content-Type": "application/json" 
         },
         body: JSON.stringify(data)
-      });
+      }).then((response) => {
+        this.props.getSchedule()
+      })
     }
 
 

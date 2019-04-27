@@ -3,6 +3,7 @@ import Calendar from "../../containers/CalendarContainer";
 import Today from "../../containers/TodayContainer";
 import ThisWeek from './ThisWeek';
 import Modal from './Modal'
+import RemoveButton from './RemoveModel'
 import './style.css';
 
 class Schedule extends React.Component{
@@ -13,9 +14,7 @@ class Schedule extends React.Component{
     };
   }
 
-
-  componentDidMount(){
-    console.log('mounted');
+  getSchedule(){
     fetch('/api/schedule', {
       method: "GET",
       headers: {"Content-Type": "application/json"},
@@ -31,13 +30,19 @@ class Schedule extends React.Component{
     .catch(error => {
       console.log(error)
     })
+  }
+
+
+  componentDidMount(){
+    console.log('mounted');
+    this.getSchedule()
   }  
  
   render(){
     return (
       <div style={ { margin: 45 } }>
         <div className="page">
-          <div style={ { paddingTop: 15 } }><Calendar/><Modal/></div>
+          <div style={ { paddingTop: 15 } }><Calendar/><Modal getSchedule={this.getSchedule.bind(this)}/><RemoveButton courses={this.state.courses}/></div>
           <Today courses={this.state.courses}/>
           <ThisWeek courses={this.state.courses}/>
         </div>
