@@ -50,7 +50,7 @@ function Today(props) {
                 <div className={classes.courseName}>
                     {course.courseName}
                 </div>
-                <Button onClick={() => {removeItem(course._id)}}>Remove</Button>
+                <Button onClick={() => {removeItem(course._id)}}></Button>
               </ListItem>                
               })}
             </List>
