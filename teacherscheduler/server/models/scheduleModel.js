@@ -5,6 +5,7 @@ let scheduleSchema = new mongoose.Schema({
         courseName: String,
         days: String,
         rotation: Number,
+        rotationDay: String,
         startTime: String,
         endTime: String,
         userid: String

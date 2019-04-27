@@ -1,9 +1,9 @@
 export default{
-    firstName: '',
-    lastName: '',
-    email: '',
-    username: '',
-    password: '',
-    passwordConfirmed: ''
-    // courses: []
+    // firstName: '',
+    // lastName: '',
+    // email: '',
+    // username: '',
+    // password: '',
+    // passwordConfirmed: '',
+    // // selectedDate: ''
   }

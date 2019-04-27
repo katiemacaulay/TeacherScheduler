@@ -49,12 +49,15 @@ class addClass extends React.Component{
         f: false,
         days: ['m', 't', 'w', 'th', 'f'],
         rotation: 0,
+        rotationDay: '',
         labelWidth: 0,
         startDate: new Date(),
         endDate: new Date()
       };
       this.handleChangeTime = this.handleChangeTime.bind(this);
       this.handleChangeTimeEnd = this.handleChangeTimeEnd.bind(this);
+      this.findDays = this.findDays.bind(this);
+
 
       this.handleCheckbox = name => event => {
         this.setState({ [name]: event.target.checked });
@@ -66,16 +69,14 @@ class addClass extends React.Component{
     }
   
     handleChangeTime(date) {
-      let start = date.toString()
       this.setState({
-        startDate: start
+        startDate: date
       });
     }
 
     handleChangeTimeEnd(date) {
-      let end = date.toString()
       this.setState({
-        endDate: end
+        endDate: date
       });
     }
 
@@ -84,13 +85,34 @@ class addClass extends React.Component{
         labelWidth: 30,
       });
     }
+    
+    findDays(){
+      let days = []
+      if(this.state.m === true){
+        days.push('m')
+      }
+      if(this.state.t === true){
+        days.push('t')
+      }
+      if(this.state.w === true){
+        days.push('w')
+      }
+      if(this.state.th === true){
+        days.push('h')
+      }
+      if(this.state.f === true){
+        days.push('f')
+      }
+      return days.join('')
+    }
 
     handleSubmit(e) {
       e.preventDefault();
       let data = {
         'courseName': this.state.courseName,
-        'days': '',
+        'days': this.findDays(),
         'rotation': this.state.rotation,
+        'rotationDay': this.state.rotationDay,
         'startTime': this.state.startDate,
         'endTime': this.state.endDate
       }
@@ -124,7 +146,7 @@ class addClass extends React.Component{
               }}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <FormLabel>Start Time </FormLabel>
               <DatePicker
                   selected={this.state.startDate}
@@ -136,7 +158,7 @@ class addClass extends React.Component{
                   timeCaption="Time"
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <FormLabel>End Time </FormLabel>
                 <DatePicker
                     selected={this.state.endDate}
@@ -148,6 +170,7 @@ class addClass extends React.Component{
                     timeCaption="Time"
                 />
             </Grid>
+            <div> Choose whether your class meets every week on a specific day or if it rotates</div>
             <Grid item xs={12}>
               <FormLabel>Option 1 </FormLabel>
               <div>
@@ -165,8 +188,8 @@ class addClass extends React.Component{
                 })}
               </div>
             </Grid>
-            <Grid item xs={12}>
             <FormLabel>Option 2 </FormLabel>
+            <Grid item xs={12}>
             <div>
               <InputLabel htmlFor="age-simple">Rotates Every: </InputLabel>
               <Select
@@ -176,19 +199,45 @@ class addClass extends React.Component{
                   name: 'rotation',
                   id: 'rotation',
                 }}
-              >
-            <MenuItem value="">none.</MenuItem>
-            <MenuItem value={2}>2 days</MenuItem>
-            <MenuItem value={3}>3 days</MenuItem>
-            <MenuItem value={4}>4 days</MenuItem>
-            <MenuItem value={5}>5 days</MenuItem>
-            <MenuItem value={6}>6 days</MenuItem>
-            <MenuItem value={7}>7 days</MenuItem>
-            <MenuItem value={8}>8 days</MenuItem>
-            <MenuItem value={9}>9 days</MenuItem>
-            <MenuItem value={10}>10 days</MenuItem>
+                  >
+                <MenuItem value="">none.</MenuItem>
+                <MenuItem value={2}>2 days</MenuItem>
+                <MenuItem value={3}>3 days</MenuItem>
+                <MenuItem value={4}>4 days</MenuItem>
+                <MenuItem value={5}>5 days</MenuItem>
+                <MenuItem value={6}>6 days</MenuItem>
+                <MenuItem value={7}>7 days</MenuItem>
+                <MenuItem value={8}>8 days</MenuItem>
+                <MenuItem value={9}>9 days</MenuItem>
+                <MenuItem value={10}>10 days</MenuItem>
 
-          </Select> 
+              </Select> 
+          </div>         
+            </Grid>
+            <Grid item xs={12}>
+            <div>
+              <InputLabel htmlFor="age-simple">Rotation Starts on:</InputLabel>
+              <Select
+                value={this.state.rotationDay}
+                onChange={this.handleChanges}
+                inputProps={{
+                  name: 'rotationDay',
+                  id: 'rotationDay',
+                }}
+                  >
+                <MenuItem value="">none.</MenuItem>
+                <MenuItem value={1}>Day 1</MenuItem>
+                <MenuItem value={2}>Day 2</MenuItem>
+                <MenuItem value={3}>Day 3</MenuItem>
+                <MenuItem value={4}>Day 4</MenuItem>
+                <MenuItem value={5}>Day 5</MenuItem>
+                <MenuItem value={6}>Day 6</MenuItem>
+                <MenuItem value={7}>Day 7</MenuItem>
+                <MenuItem value={8}>Day 8</MenuItem>
+                <MenuItem value={9}>Day 9</MenuItem>
+                <MenuItem value={10}>Day 10</MenuItem>
+
+              </Select> 
           </div>         
             </Grid>
             <Button

@@ -19,6 +19,7 @@ exports.coursesAdd = function add(request, response) {
         courseName: request.body.courseName,
         days: request.body.days,
         rotation: request.body.rotation,
+        rotationDay: request.body.rotationDay,
         startTime: request.body.startTime,
         endTime: request.body.endTime,
         userid: request.cookies.userid

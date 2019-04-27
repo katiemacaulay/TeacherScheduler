@@ -19,28 +19,9 @@ class Calendar extends React.Component{
       }
       
       handleDayClick(day) {
-        // handles the input for New Date
-          let data = day.toLocaleDateString()
-          let dataSplit = data.split('/')
-          let newSelectedDate = dataSplit.map(Number)
-          let allSchoolDays = this.state.schoolDays.slice()
-        // handles the string input array
-          let schoolDaysSearch = this.state.schoolDaySearch.slice()
-          let schoolDayIndex = schoolDaysSearch.indexOf(data)
-
-          // if(schoolDayIndex > -1){
-          //   schoolDaysSearch.splice(schoolDayIndex, 1)
-          //   allSchoolDays.splice(schoolDayIndex, 1)
-          // } else {
-          //   schoolDaysSearch.push(data)
-          //   allSchoolDays.push(newSelectedDate)
-          // }
-
-            this.setState({ selectedDay: day.toDateString(), 
-            schoolDays: allSchoolDays,
-            schoolDaySearch: schoolDaysSearch
-            });
-      }
+          if(this.props.selectedDate){
+            this.props.selectedDate(day)
+        }}
       
 
   render(){
@@ -53,7 +34,7 @@ class Calendar extends React.Component{
             return (new Date(day[2], (day[0]-1), day[1]))
           })
           }
-          onDayClick={this.handleDayClick} />
+          onDayClick={(this.handleDayClick)} />
         {this.state.selectedDay ? (
           <p></p>
         ) : (

@@ -35,3 +35,11 @@ export function addUserPasswordConfirmed(txt){
     value:txt
   }
 }
+
+export function selectDate(txt){
+  console.log(txt)
+  return {
+    type:"SELECT_DAY",
+    value:txt
+  }
+}

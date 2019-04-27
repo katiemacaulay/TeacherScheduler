@@ -41,5 +41,13 @@ function firstName(state = '', action){
       }
       return state;
   }
+
+
+  function selectedDate(state = '', action){
+    if(action.type === "SELECT_DAY"){
+      return action.value
+    }
+    return state;
+  }
   
-  export default combineReducers({firstName, lastName, email, username, password, passwordConfirm})
+  export default combineReducers({firstName, lastName, email, username, password, passwordConfirm, selectedDate})
